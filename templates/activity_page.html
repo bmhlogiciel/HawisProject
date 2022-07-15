@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+
+{% block head%}
+    <title>{{title}}</title>
+{% endblock head%}
+
+
+{% block body %}
+
+<div class="container"> 
+    <form action="/activity_page" method="POST">
+        
+        <label>Activities</label>
+        <input type="text" name = "activity_name" id = "activity_id" placeholder = " Activity">
+        <input type="submit" value = "Add Activity">
+
+    </form>
+</div>
+
+
+<div class="container">
+    <h1>List of Activities</h1>
+    {% if activities|length < 1 %}
+        <h4> There are no Activity. Create one below !</h4>
+
+    {% else %}
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Activity النشاط</th>
+            </tr>
+            </thead>
+            <br>
+            <tbody>
+                {% for activity in activities %}
+                    <tr>
+                        <td>{{ activity.name }}</td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+
+
+
+
+
+
+{% endblock body%}

@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+
+{% block head%}
+    <title>{{title}}</title>
+{% endblock head%}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="text-center">List of persons</h1>
+    {% if persons|length < 1 %}
+        <h4> There are no person. Create one below !</h4>
+
+    {% else %}
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Dénomination التسمية</th>
+                <th scope="col">Activité النشاط</th>
+                <th scope="col">Mobile الهاتف</th>
+                <th scope="col">Date d'inscription تاريخ التسجيل</th>
+            </tr>
+            </thead>
+            <br>
+            <tbody>
+                {% for person in persons %}
+                    <tr>
+                        <td>{{ person.name }}</td>
+                        <td>{{ person.activity_id }}</td>
+                        <td>{{ person.mobile }}</td>
+                        <td>{{ person.date_created.date() }}</td>
+                        <td>
+                            <a href="/info/{{person.id}}">info</a>
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+
+
+{% endblock body%}

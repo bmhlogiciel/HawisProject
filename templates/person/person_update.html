@@ -1,0 +1,43 @@
+{% extends 'base.html'%}
+
+{% block head%}
+<title>{{title}}</title>
+{% endblock head%}
+
+
+{% block body%}
+
+<div class="content">
+    <h1>Update Person</h1>
+
+    <div class="form">
+
+        <form class="form-inline" action="/update/{{person.id}}" method="POST">
+            
+            <input type="text" name="name" id="name" value = "{{person.name}}">
+
+            <label for="activity_id">Your activity for update :</label>
+            <select name="activity_id">
+                {% for activity in activities %}
+                    <option name="{{activity_id}}">{{activity.name}}</option>
+                {% endfor %}
+                
+            </select>
+
+            <input type="text" name="mobile" id="mobile" value = "{{person.mobile}}">
+
+             
+            {% if person.show_me == True %}
+                Show :<input type="checkbox" name = "mycheckbox" checked>
+            {% else %}
+                Show :<input type="checkbox" name = "mycheckbox" >
+            {% endif %}
+            <input type="submit" value="update">
+            
+        </form>
+    </div>
+
+</div>
+
+
+{% endblock body%}

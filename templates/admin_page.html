@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+    <title>{{ title }}</title>
+
+{% endblock head %}
+
+
+{% block body %}
+
+<div class="container">
+    <h1>List Persons</h1>
+    {% if persons|length < 1 %}
+        <h4> There are no person. Create one below !</h4>
+    {% else %}
+
+    
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Show</th>
+                <th scope="col">Dénomination التسمية</th>
+                <th scope="col">Activité النشاط</th>
+                <th scope="col">Mobile الهاتف</th>
+                <th scope="col">Date d'inscription تاريخ التسجيل</th>
+                <th scope="col">Actions</th>
+
+            </tr>
+            </thead>
+            <br>
+            <tbody>
+                {% for person in persons %}
+                    <tr>
+                        <td><input type = "checkbox" name = "mycheckbox"
+                            {% if person.show_me  %} checked {% else %} {% endif %}/>
+                        </td>
+                        <td>{{ person.name }}</td>
+                        <td>{{ person.activity_id }}</td>
+                        <td>{{ person.mobile }}</td>
+                        <td>{{ person.date_created.date() }}</td>
+                        <td>
+                            <a href="/delete/{{person.id}}">Supprimer </a>
+                            <a href="/update/{{person.id}}">Modifier</a>
+                            <a href="/view/{{person.id}}">Infos</a>
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+
+
+
+
+
+
+{% endblock body%}>
